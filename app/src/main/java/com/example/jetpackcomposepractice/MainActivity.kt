@@ -38,12 +38,12 @@ class MainActivity : ComponentActivity() {
                     .fillMaxWidth(0.5f)
                     .padding(16.dp)
             ) {
+                ImageCard(
+                    painter = painter,
+                    contentDescription = description,
+                    title = title
+                )
             }
-            ImageCard(
-                painter = painter,
-                contentDescription = description,
-                title = title
-            )
         }
     }
 }
@@ -65,17 +65,18 @@ fun ImageCard(
                 painter = painter, contentDescription = contentDescription,
                 contentScale = ContentScale.Crop
             )
-            Box(modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    Brush.verticalGradient(
-                        colors = listOf(
-                            Color.Transparent,
-                            Color.Black
-                        ),
-                        startY =  300f,
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                Color.Transparent,
+                                Color.Black
+                            ),
+                            startY = 300f,
+                        )
                     )
-                )
             )
             Box(
                 modifier = Modifier
