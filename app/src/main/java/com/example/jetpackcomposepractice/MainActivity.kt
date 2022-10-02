@@ -19,7 +19,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -32,6 +40,9 @@ class MainActivity : ComponentActivity() {
             val painter = painterResource(id = R.drawable.homelander2)
             val description = "Sticks And Stones Won't Break My Bones, But Words…"
             val title = "Homelander"
+            val fontFamily = FontFamily(
+                Font(R.font.rubik_regular)
+            )
 
             Box(
                 modifier = Modifier
@@ -41,7 +52,8 @@ class MainActivity : ComponentActivity() {
                 ImageCard(
                     painter = painter,
                     contentDescription = description,
-                    title = title
+                    title = title,
+                    fontFamily = fontFamily
                 )
             }
         }
@@ -53,7 +65,8 @@ fun ImageCard(
     painter: Painter,
     contentDescription: String,
     title: String,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    fontFamily: FontFamily,
 ) {
     Card(
         modifier = modifier.fillMaxWidth(),
@@ -84,7 +97,27 @@ fun ImageCard(
                     .padding(12.dp),
                 contentAlignment = Alignment.BottomStart
             ) {
-                Text(title, style = TextStyle(color = Color.White, fontSize = 16.sp))
+                Text(
+                    text = buildAnnotatedString {
+                        withStyle(
+                            style = SpanStyle(
+                                color = Color.Red,
+                                fontSize = 23.sp
+                            )
+                        ) {
+                            append("Home")
+                        }
+                        append("lander")
+
+                    },
+                    style = TextStyle(
+                        color = Color.White,
+                        fontSize = 21.sp,
+                        fontFamily = fontFamily,
+                        fontStyle = FontStyle.Normal,
+                        textAlign = TextAlign.Center,
+                    )
+                )
             }
         }
 
